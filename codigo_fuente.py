@@ -1,5 +1,5 @@
 import random
-palabras=open("proyecto ahorcado/palabras.txt","r",encoding="utf-8") #archivo ya abrierto
+palabras=open("proyecto ahorcado/ahorcado/palabras.txt","r",encoding="utf-8") #archivo ya abrierto
 
 def selector_palabra():
     p1="hola"
