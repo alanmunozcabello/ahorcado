@@ -4,8 +4,11 @@ import turtle
 "defs"
 
 lapiz = turtle.Turtle()
+fuego= turtle.Turtle()
 lapiz.shape()
 lapiz.speed(5)
+fuego.shape()
+fuego.speed(0)
 turtle.bgcolor("lightblue") #sin el turtle no cambia el background color de la ventana, no se por que tira error. no debería... pero funciona :D
 
 def landscape(): #dibujo del landscape
@@ -26,25 +29,28 @@ def landscape(): #dibujo del landscape
         i+=1
     lapiz.end_fill()
 
+    pila_troncos()
+
     #dibujar fogata
-    lapiz.penup()
-    lapiz.goto(60,0)
-    lapiz.color("red")
-    lapiz.width(2)
-    lapiz.pendown()
-    lapiz.begin_fill()
-    lapiz.forward(35)
-    lapiz.left(90)
-    lapiz.forward(50)
-    lapiz.left(135)
-    lapiz.forward(20)
-    lapiz.right(90)
-    lapiz.forward(20)
-    lapiz.left(90)
-    lapiz.forward(20)
-    lapiz.left(45)
-    lapiz.forward(36)
-    lapiz.end_fill()
+    fuego.setheading(0)
+    fuego.penup()
+    fuego.goto(60,0)
+    fuego.color("red")
+    fuego.width(2)
+    fuego.pendown()
+    fuego.begin_fill()
+    fuego.forward(35)
+    fuego.left(90)
+    fuego.forward(50)
+    fuego.left(135)
+    fuego.forward(20)
+    fuego.right(90)
+    fuego.forward(20)
+    fuego.left(90)
+    fuego.forward(20)
+    fuego.left(45)
+    fuego.forward(36)
+    fuego.end_fill()
 
     #dibujar arbol
     lapiz.penup()
@@ -86,8 +92,7 @@ def landscape(): #dibujo del landscape
     lapiz.forward(10)
     lapiz.end_fill()
 
-    lapiz.penup() #dibujar leños
-
+    tronco0() #dibujar leño inicial del feugo
 
     lapiz.penup() #dibuja el corazon que indica las vidas
     lapiz.goto(540,500) #al vajar las vidas se cambia el numero del corazon
@@ -376,132 +381,160 @@ def animacion_ladron(): #animacion ladron
     sherif_acepto_reto()
 
 def animacion_fuego(malas):
+    fuego.shape()
     if(malas==1):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(70)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(56)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(70)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(56)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
     if(malas==2):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(110)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(86)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(110)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(86)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
+        tronco2()
     if(malas==3):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(150)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(136)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(150)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(136)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
+        tronco2()
+        tronco3()
     if(malas==4):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(200)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(186)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(200)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(186)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
+        tronco2()
+        tronco3()
+        tronco4()
     if(malas==5):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(240)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(226)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(240)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(226)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
+        tronco2()
+        tronco3()
+        tronco4()
+        tronco5()
     if(malas==6):
-        lapiz.speed(0)
-        lapiz.penup()
-        lapiz.goto(60,0)
-        lapiz.color("red")
-        lapiz.width(2)
-        lapiz.setheading(0)
-        lapiz.pendown()
-        lapiz.begin_fill()
-        lapiz.forward(35)
-        lapiz.left(90)
-        lapiz.forward(270)#cambiante segun malas
-        lapiz.left(135)
-        lapiz.forward(20)
-        lapiz.right(90)
-        lapiz.forward(20)
-        lapiz.left(90)
-        lapiz.forward(20)
-        lapiz.left(45)
-        lapiz.forward(256)#cambiante segun malas
-        lapiz.end_fill()
+        fuego.speed(0)
+        fuego.penup()
+        fuego.goto(60,0)
+        fuego.color("red")
+        fuego.width(2)
+        fuego.setheading(0)
+        fuego.pendown()
+        fuego.begin_fill()
+        fuego.forward(35)
+        fuego.left(90)
+        fuego.forward(270)#cambiante segun malas
+        fuego.left(135)
+        fuego.forward(20)
+        fuego.right(90)
+        fuego.forward(20)
+        fuego.left(90)
+        fuego.forward(20)
+        fuego.left(45)
+        fuego.forward(256)#cambiante segun malas
+        fuego.end_fill()
+        tronco0()
+        tronco1()
+        tronco2()
+        tronco3()
+        tronco4()
+        tronco5()
+        tronco6()
         #llamar animacion de final (loss)
 
 def intro_anim(): #llama a las otras animaciones para la introduccion
@@ -541,6 +574,8 @@ def vidas(vida):
     lapiz.write(vida,False, font=("jellee",25))
 
 def animacion_gana():
+    fuego.clear()
+    tronco0()
     lapiz.penup()
     lapiz.goto(250,160)
     lapiz.color("black")
@@ -557,3 +592,161 @@ def animacion_pierde():
     lapiz.speed(1)
     lapiz.write("Perdió, sheriff, y el pueblo con usted", True, font=("arial",10))
     lapiz.undo()
+
+def pila_troncos():
+    lapiz.penup()
+    lapiz.goto(400,0)
+    lapiz.pendown()
+    lapiz.color("brown")
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(25)
+        lapiz.right(90)
+        lapiz.forward(25)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+    lapiz.penup()
+    lapiz.goto(425,0)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(25)
+        lapiz.right(90)
+        lapiz.forward(25)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+    lapiz.penup()
+    lapiz.goto(413,25)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(25)
+        lapiz.right(90)
+        lapiz.forward(25)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco0():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(55,15)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco1():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(70,15)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco2():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(55,30)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco3():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(70,30)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco4():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(55,45)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco5():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(70,45)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
+
+def tronco6():
+    lapiz.speed(0)
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.color("brown")
+    lapiz.goto(55,60)
+    lapiz.pendown()
+    lapiz.begin_fill()
+    i=0
+    while(i<2):
+        lapiz.forward(15)
+        lapiz.right(90)
+        lapiz.forward(15)
+        lapiz.right(90)
+        i+=1
+    lapiz.end_fill()
