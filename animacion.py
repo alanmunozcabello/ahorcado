@@ -5,6 +5,15 @@ import turtle
 
 lapiz = turtle.Turtle()
 fuego= turtle.Turtle()
+gui=turtle.Turtle()
+letras_correctas=turtle.Turtle()
+letras_incorrectas=turtle.Turtle()
+letras_correctas.shape()
+letras_incorrectas.speed(0)
+letras_correctas.speed(0)
+letras_incorrectas.shape()
+gui.shape()
+gui.speed(0)
 lapiz.shape()
 lapiz.speed(5)
 fuego.shape()
@@ -12,21 +21,24 @@ fuego.speed(0)
 turtle.bgcolor("lightblue") #sin el turtle no cambia el background color de la ventana, no se por que tira error. no debería... pero funciona :D
 
 def landscape(): #dibujo del landscape
-    turtle.setup(width=1200, height=1200, startx=None, starty=None)
+    turtle.setup(width=1920, height=1080, startx=0, starty=0)
     lapiz.speed(0)
+    lapiz.setheading(0)
     lapiz.penup()
     lapiz.color("green")
-    lapiz.goto(-600,300)
+    lapiz.goto(-1000,0)
     lapiz.width(1)
     lapiz.pendown()
     lapiz.begin_fill()
-    i=0
-    while(i<2):
-        lapiz.forward(1200)
-        lapiz.right(90)
-        lapiz.forward(1200)
-        lapiz.right(90)
-        i+=1
+    lapiz.forward(1450)
+    lapiz.right(110)
+    lapiz.forward(350)
+    lapiz.right(-20)
+    lapiz.forward(150)
+    lapiz.right(30)
+    lapiz.forward(250)
+    lapiz.setheading(180)
+    lapiz.forward(2000)
     lapiz.end_fill()
 
     pila_troncos()
@@ -95,7 +107,7 @@ def landscape(): #dibujo del landscape
     tronco0() #dibujar leño inicial del feugo
 
     lapiz.penup() #dibuja el corazon que indica las vidas
-    lapiz.goto(540,500) #al vajar las vidas se cambia el numero del corazon
+    lapiz.goto(540,450) #al vajar las vidas se cambia el numero del corazon
     lapiz.speed(0)
     lapiz.pendown()
     lapiz.begin_fill()
@@ -144,6 +156,16 @@ def dibujar_ladron():
     lapiz.width(1)
 
 def intro_sherif(): #animacion sherif parte 1
+    #dibujar piedra
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.goto(-260,-55)
+    lapiz.pendown()
+    lapiz.width(5)
+    lapiz.color("gray")
+    lapiz.circle(2)
+
+    #dibujar sheriff
     lapiz.penup()
     lapiz.setheading(0)
     lapiz.goto(-300,100)
@@ -154,20 +176,22 @@ def intro_sherif(): #animacion sherif parte 1
     lapiz.circle(30) #cabeza
     lapiz.right(90) #     |
     lapiz.forward(80) #   v cuerpo
-    lapiz.left(45)
+    lapiz.left(10)
     lapiz.forward(80)
     lapiz.right(180)
     lapiz.forward(80)
-    lapiz.left(90)
+    lapiz.left(160)
     lapiz.forward(80)   
     lapiz.penup()   
+    lapiz.setheading(0)
     lapiz.goto(-300,75)   
     lapiz.pendown() 
+    lapiz.left(250)
     lapiz.forward(50)
     lapiz.left(180)
     lapiz.forward(50)
-    lapiz.right(45)
-    lapiz.forward(50)   
+    lapiz.right(140)
+    lapiz.forward(50)    
     lapiz.penup() #dejar de dibujar
     lapiz.color("black") #color de letras
     lapiz.goto(-250,150)
@@ -178,6 +202,15 @@ def intro_sherif(): #animacion sherif parte 1
     lapiz.speed(0)
     lapiz.clear()
     #parte 2 de animacion
+
+    #dibujar piedra
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.goto(-260,-55)
+    lapiz.pendown()
+    lapiz.width(5)
+    lapiz.color("gray")
+    lapiz.circle(2)
     landscape() #redibujar landscape
     
     lapiz.setheading(0)
@@ -206,6 +239,15 @@ def intro_sherif(): #animacion sherif parte 1
     lapiz.forward(20)
     lapiz.left(90)
     lapiz.forward(20)   
+
+    #dibujar piedra
+    lapiz.setheading(0)
+    lapiz.penup()
+    lapiz.goto(-260,-55)
+    lapiz.pendown()
+    lapiz.width(5)
+    lapiz.color("gray")
+    lapiz.circle(2)
 
 def sherif_acepto_reto():
     lapiz.setheading(0)
@@ -546,9 +588,12 @@ def intro_anim(): #llama a las otras animaciones para la introduccion
     vidas(vida)
 
 def entradas(): #muestra ventana para ingresar letras
-    letra=turtle.textinput("", "ingrese una letra (solo una a la vez): ") 
-    if(len(letra)<0):
-        turtle.textinput("entrada invalida", "ingrese UNA letra: ") #en caso de que ingresen algo diferente se recalca UNA letra
+    letra=turtle.textinput("", "ingrese una letra minuscula (solo una a la vez): ") 
+    if(len(letra)==0):
+        letra=turtle.textinput("entrada no valida", "ingrese UNA letra minuscula: ") #en caso de que ingresen algo diferente se recalca UNA letra
+        return letra #haga o no haga caso el jugador se returna lo que haya ingresado
+    elif(len(letra)>1):
+        letra=turtle.textinput("entrada no valida", "ingrese UNA letra minuscula: ") #en caso de que ingresen algo diferente se recalca UNA letra
         return letra #haga o no haga caso el jugador se returna lo que haya ingresado
     else:
         return letra
@@ -556,7 +601,7 @@ def entradas(): #muestra ventana para ingresar letras
 def vidas(vida):
     lapiz.speed(0)
     lapiz.penup()
-    lapiz.goto(532,525)
+    lapiz.goto(532,475)
     lapiz.pendown()
     lapiz.setheading(0)
     lapiz.color("red")
@@ -572,6 +617,30 @@ def vidas(vida):
     lapiz.end_fill()
     lapiz.color("white")
     lapiz.write(vida,False, font=("jellee",25))
+
+def mostrar_frase(p_adv,l_corr,frase_actual,frase_nueva):
+    frase_nueva=""
+    j=0
+    while(j<len(frase_actual)):
+        i=0
+        while(i<len(l_corr)and j<len(frase_actual)):
+            if(l_corr[i]==p_adv[j]):
+                frase_nueva+=l_corr[i]
+                j+=1
+                i=0
+            
+            else:
+                i+=1
+        if(i==len(l_corr)):
+            frase_nueva+=frase_actual[j]
+        j+=1
+
+    gui.clear()
+    gui.penup()
+    gui.goto(-100,-200)
+    gui.write(frase_nueva, font=("arial",50))
+
+    return frase_nueva
 
 def animacion_gana():
     fuego.clear()
@@ -592,6 +661,26 @@ def animacion_pierde():
     lapiz.speed(1)
     lapiz.write("Perdió, sheriff, y el pueblo con usted", True, font=("arial",10))
     lapiz.undo()
+
+def mostrar_letras_correctas(l_corr_nr):
+    letras_correctas.clear()
+    letras_correctas.speed(0)
+    letras_correctas.penup()
+    letras_correctas.goto(-700,-250)
+    letras_correctas.pendown()
+    letras_correctas.width(10)
+    letras_correctas.color("lavender blush")
+    letras_correctas.write(f"letras correctas usadas: {l_corr_nr}",font=("arial",20))
+
+def mostrar_letras_incorrectas(l_incorr):
+    letras_incorrectas.clear()
+    letras_incorrectas.speed(0)
+    letras_incorrectas.penup()
+    letras_incorrectas.goto(-700,-400)
+    letras_incorrectas.pendown()
+    letras_incorrectas.width(10)
+    letras_incorrectas.color("tomato")
+    letras_incorrectas.write(f"letras incorrectas usadas: {l_incorr}",font=("arial",20))
 
 def pila_troncos():
     lapiz.penup()
