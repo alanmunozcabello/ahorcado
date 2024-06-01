@@ -4,19 +4,25 @@ import turtle
 "defs"
 
 lapiz = turtle.Turtle()
+lapiz.hideturtle()
 fuego= turtle.Turtle()
+fuego.hideturtle()
+piedra=turtle.Turtle()
+piedra.hideturtle()
+piedra.shape("circle")
+piedra.width(10)
 gui=turtle.Turtle()
+gui.hideturtle()
 letras_correctas=turtle.Turtle()
+letras_correctas.hideturtle()
 letras_incorrectas=turtle.Turtle()
+letras_incorrectas.hideturtle()
 letras_correctas.shape()
 letras_incorrectas.speed(0)
 letras_correctas.speed(0)
 letras_incorrectas.shape()
-gui.shape()
 gui.speed(0)
-lapiz.shape()
 lapiz.speed(5)
-fuego.shape()
 fuego.speed(0)
 turtle.bgcolor("lightblue") #sin el turtle no cambia el background color de la ventana, no se por que tira error. no debería... pero funciona :D
 
@@ -106,7 +112,8 @@ def landscape(): #dibujo del landscape
 
     tronco0() #dibujar leño inicial del feugo
 
-    lapiz.penup() #dibuja el corazon que indica las vidas
+    #dibuja el corazon que indica las vidas (codigo de tiktok)
+    lapiz.penup()
     lapiz.goto(540,450) #al vajar las vidas se cambia el numero del corazon
     lapiz.speed(0)
     lapiz.pendown()
@@ -156,14 +163,6 @@ def dibujar_ladron():
     lapiz.width(1)
 
 def intro_sherif(): #animacion sherif parte 1
-    #dibujar piedra
-    lapiz.setheading(0)
-    lapiz.penup()
-    lapiz.goto(-260,-55)
-    lapiz.pendown()
-    lapiz.width(5)
-    lapiz.color("gray")
-    lapiz.circle(2)
 
     #dibujar sheriff
     lapiz.penup()
@@ -203,14 +202,6 @@ def intro_sherif(): #animacion sherif parte 1
     lapiz.clear()
     #parte 2 de animacion
 
-    #dibujar piedra
-    lapiz.setheading(0)
-    lapiz.penup()
-    lapiz.goto(-260,-55)
-    lapiz.pendown()
-    lapiz.width(5)
-    lapiz.color("gray")
-    lapiz.circle(2)
     landscape() #redibujar landscape
     
     lapiz.setheading(0)
@@ -239,15 +230,6 @@ def intro_sherif(): #animacion sherif parte 1
     lapiz.forward(20)
     lapiz.left(90)
     lapiz.forward(20)   
-
-    #dibujar piedra
-    lapiz.setheading(0)
-    lapiz.penup()
-    lapiz.goto(-260,-55)
-    lapiz.pendown()
-    lapiz.width(5)
-    lapiz.color("gray")
-    lapiz.circle(2)
 
 def sherif_acepto_reto():
     lapiz.setheading(0)
@@ -839,3 +821,26 @@ def tronco6():
         lapiz.right(90)
         i+=1
     lapiz.end_fill()
+
+def x_y(x,y,i):
+    if(i<6):
+        y+=20
+        x+=45
+    else:
+        y-=15
+        x+=60
+    return x,y
+
+def lanzar_piedra():
+    piedra.speed(0)
+    x=-290
+    y=90
+    piedra.penup()
+    piedra.goto(x,y)
+    piedra.showturtle()
+    piedra.speed(3)
+    i=0
+    while(i<13):
+        x,y=x_y(x,y,i)
+        piedra.goto(x,y)
+        i+=1

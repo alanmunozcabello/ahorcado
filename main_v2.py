@@ -13,22 +13,29 @@ def selector_palabra(): #segun un numero random se elige la frase o palabra
     numero=random.randint(1,5) #comentar esto para probar easter-egg, yo se que quiere
     #numero=6 #descomentar esta variable para probar easter-egg
 
+    egg=0
     if(numero==1):
         p_adv=p1
+        egg=0
     elif(numero==2):
         p_adv=p2
+        egg=0
     elif(numero==3):
         p_adv=p3
+        egg=0
     elif(numero==4):
         p_adv=p4
+        egg=0
     elif(numero==5):
         p_adv=p5
+        egg=0
     elif(numero==6):
         p_adv=p6
-    return p_adv
+        egg=1
+    return p_adv,egg
 
 
-def adivinador(p_adv,frase_actual):
+def adivinador(p_adv,frase_actual,egg):
     print(p_adv) #borrar
     vida=6 #cantidad base de vidas
     malas=0
@@ -95,18 +102,22 @@ def adivinador(p_adv,frase_actual):
             print("letra usada")
 
     if(malas==6):
-        return 0
+        return 0,egg
     else:
-        return 1
+        return 1,egg
 
-def gana_o_pierde(g_o_p):
+def gana_o_pierde(g_o_p,egg):
     if(g_o_p==0):
         animacion_pierde()
         print("perdiste")#borrar
     else:
-        animacion_gana()
-        print("ganaste")#borrar
-
+        if(g_o_p==1 and egg==1):
+            lanzar_piedra()
+            animacion_gana() #cambiar por matar al ladron d:
+            print("ganaste")#borrar
+        else:
+            animacion_gana()
+            print("ganaste")
 # p_adv="perro sentado"
 # l_corr="prr"
 
@@ -125,10 +136,10 @@ def guines(p_adv):
 
 def main():
     intro_anim()
-    p_adv=selector_palabra() #variable p_adv es palabra a adivinar
+    p_adv,egg=selector_palabra() #variable p_adv es palabra a adivinar
     frase_actual=guines(p_adv)
-    g_o_p=adivinador(p_adv,frase_actual)
-    gana_o_pierde(g_o_p)
+    g_o_p,egg=adivinador(p_adv,frase_actual,egg)
+    gana_o_pierde(g_o_p,egg)
 
 "main"
 

@@ -1,32 +1,29 @@
+import turtle
 
-def nuevo_estado(p_adv,l_corr,est_actual):
-    frase_nueva=""
-    j=0
-    while(j<len(est_actual)):
-        i=0
-        while(i<len(l_corr)and j<len(est_actual)):
-            if(l_corr[i]==p_adv[j]):
-                frase_nueva+=l_corr[i]
-                j+=1
-                i=0
-            
-            else:
-                i+=1
-        if(i==len(l_corr)):
-            frase_nueva+=est_actual[j]
-        j+=1
-    print(frase_nueva)
+piedra = turtle.Turtle()
+piedra.speed(0)
+piedra.color("gray")
+piedra.shape("circle")
 
-p_adv="perro sentado"
-l_corr="prr"
-frase_actual=""
-
-i=0
-while(i<len(p_adv)):
-    if(p_adv[i]==" "):
-        frase_actual+="/" #para dibujar, si p_adv[i]=="/" -> dibujar -/- (linea cruzada con guion)
+def x_y(x,y,i):
+    if(i<6):
+        y+=20
+        x+=80
     else:
-        frase_actual+="-"
-    i+=1
+        y-=20
+        x+=100
+    return x,y
 
-nuevo_estado(p_adv,l_corr,frase_actual)
+def lanzar_piedra():
+    x=-600
+    y=75
+    piedra.penup()
+    piedra.goto(x,y)
+    piedra.speed(1)
+    i=0
+    while(i<13):
+        x,y=x_y(x,y,i)
+        piedra.goto(x,y)
+        i+=1
+
+lanzar_piedra()
